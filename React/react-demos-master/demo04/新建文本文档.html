@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="empl">error</div>
+		<div id="example">error</div>
+		<script type="text/babel">
+			//首字母必须大写，否则出不来 Namediv
+			var Namediv = React.createClass({
+				render:function(){
+					return <h1> hellow,{this.props.aa}</h1>;
+				}
+			});
+			
+			ReactDOM.render(
+				<Namediv aa="abc"/>,
+				document.getElementById("empl")
+			);
+			/*-----------------------------*/
+		var HelloMessage = React.createClass({
+			render: function() {
+				return <h1>Hello {this.props.name}</h1>;
+			}
+		});
+
+      ReactDOM.render(
+        <HelloMessage name="John" />,
+        document.getElementById('example')
+      );
+		</script>
+	</body>
+</html>

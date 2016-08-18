@@ -1,0 +1,24 @@
+<!DOMTYPE html>
+<html>
+	<head>
+		 <script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id='empl'>abcd</div>
+		<script type="text/babel">
+			var namelist=['abc','tom','jerry'];
+			ReactDOM.render(
+				<div>
+				{
+					namelist.map(function(name){
+						return <div>hellow,{name}</div>;
+						})
+				}
+				</div>,
+				document.getElementById('empl')
+			);
+		</script>
+	</body>
+</html>

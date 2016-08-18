@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="examl">error</div>
+		<script type="text/babel">
+			var tit = "abc";
+			var TitDiv= React.createClass({
+				propTypes:{
+					title: React.PropTypes.string.isRequired,
+					age:React.PropTypes.number.IsRequired,
+				},
+				render: function(){
+					return <h1>{this.props.title + this.props.age}</h1>
+				}
+			});
+			//title age 属性等属性赋值需加大括号
+			ReactDOM.render(
+				<TitDiv title={tit} age={tit}/>,
+				document.getElementById('examl')
+			);
+		</script>
+	</body>
+</html>

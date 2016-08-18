@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id='abc'>error</div>
+		<script type='text/babel'>
+			var ToggleDiv = React.createClass({
+				getInitialState:function(){
+					return {tog:false};
+				},
+				handleClick:function(){
+					this.setState({tog:!this.state.tog});
+				},
+				render:function(){
+					var text = this.state.tog ? "123":"abc";
+					return <p onClick={this.handleClick}>{text},click to toggle.</p>;
+				}
+			});
+			
+			ReactDOM.render(
+				<ToggleDiv />,
+				document.getElementById('abc')
+			);
+		</script >
+	</body>
+</html>

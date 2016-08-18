@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/jquery.min.js"></script>
+  </head>
+  <body>
+	<div id ='exam'>error</div>
+	<script type='text/babel'>
+		var Comp = React.createClass({
+			getInitialState:function(){
+				return {
+					loading:true,
+					error:null,
+					data:null
+				};
+			},
+			componentDidMount(){
+				this.props.promise.then(
+					value=>this.setState({loading:false,data:value}),
+					error=>this.setState({loading:false,error:error})
+				);
+			},
+			render:function(){
+				if(this.state.loading){
+					return <span>Loading...</span>;
+				}
+				else if(this.state.error != null){
+					return <span> Error:{this.state.error.message}</span>;
+				}
+				else if(this.state.data != null){
+					var items = this.state.data.items;
+					console.log(items);
+					var body = items.map(function(i,index){
+										return <li>
+												<span>name:<a href={i.html_url}>{i.name}</a></span>
+												<p>stars:{i.stargazers_count}</p>
+												<p>score:{i.score}</p>
+												<p>desc:{i.description}</p>
+												</li>
+												;
+									});
+					//var body = items.map(function (repo, index) {
+					//						return (
+					//						  <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
+					//						);
+					//			});
+					return (
+							<div>
+							top {items.length} Langurages 
+								<ol>
+									{body}
+								</ol>
+							</div>
+							);
+				}
+			}
+		});
+		ReactDOM.render(
+			<Comp promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}/>,
+			document.getElementById('exam')
+		);
+	</script>
+  </body>
+</html>

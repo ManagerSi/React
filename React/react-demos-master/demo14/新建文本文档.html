@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		    <script src="../build/react.js"></script>
+			<script src="../build/react-dom.js"></script>
+			<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="empl" >error</div>
+		<div id="empl2" >error</div>
+		<script type="text/babel">
+			var TestClickComponent = React.createClass({
+			handleClick:function(event){
+				//var tipE = ReactDOM.findDOMNode(this.refs.tip);方法一
+				var tipE = this.refs.tip;
+				
+				if(tipE.style.display ==='none'){
+					tipE.style.display ='inline';
+				}
+				else{
+					tipE.style.display = 'none';
+				}
+				event.stopPropagation();
+				event.preventDefault();
+			},
+				render:function(){
+					return (
+						<div>
+							<button onClick={this.handleClick}>显示/隐藏</button><span ref="tip">测试点击</span>
+						</div>
+					);
+				}
+			});
+			
+			var TestInputComponent = React.createClass({
+				getInitialState:function(){
+					return {
+						inputContent:''
+					};
+				},
+				changeHandler:function(event){
+					this.setState({
+						inputContent:event.target.value
+					});
+					event.preventDefault();
+					event.stopPropagation();
+				},
+				render:function(){
+					return(
+						<div>
+							<input teyp='text' onChange = {this.changeHandler}/><span>{this.state.inputContent}</span>
+						</div>
+					);
+				}
+			});
+			
+			ReactDOM.render(
+				<div>
+					<TestClickComponent/>
+					<br/>
+					<TestInputComponent/>
+				</div>,
+				document.getElementById('empl')
+			);
+		</script>
+	</body>
+</html>

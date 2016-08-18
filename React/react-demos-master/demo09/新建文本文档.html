@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id='abc'></div>
+		<script type='text/babel'>
+			var VComp = React.createClass({
+				getInitialState:function(){
+					return {value:'hellow'};
+				},
+				handleChange:function(event){
+					this.setState({value:event.target.value});
+				},
+				render:function(){
+					var val = this.state.value;
+					//小括号要在returned 一行上，否则报如下错误；或者不加小括号
+					//Uncaught Invariant Violation: VComp.render(): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.
+					return <div>
+							<input type='text' value={this.state.value} onChange={this.handleChange}/>
+							<p>{val}</p>
+						</div>;
+						
+				}
+				
+			});
+			
+			ReactDOM.render(
+				<VComp />,
+				document.getElementById('abc')
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+		
+	</head>
+	<body>
+		<div id ="empl">error</div>
+		<div id ="empl2">error</div>
+		<script type="text/babel">
+			var divlist = [
+				<div> ni hao </div>,
+				<div> second Line </div>
+			];
+			ReactDOM.render(
+				<div>{divlist}</div>,
+				document.getElementById('empl')
+			);
+			
+			ReactDOM.render(
+				<ul>{
+					divlist.map(function(a){
+						return <li>{a}</li>;
+					})
+				}</ul>,
+				document.getElementById('empl2')
+			);
+		</script>
+	</body>
+</html>

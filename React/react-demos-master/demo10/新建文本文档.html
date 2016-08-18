@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="abc">error</div>
+		<script type="text/babel">
+			var Comp = React.createClass({
+				getInitialState:function(){
+					return { opacity:1.0};
+				},
+				componentDidMount:function(){
+					this.timer = setInterval(function(){
+						var opa = this.state.opacity;
+						opa-=.05;
+						if(opa<0.1){
+							opa = 1;
+						}
+						this.setState({
+							opacity:opa
+						});
+					}.bind(this),100);
+				},
+				render:function(){
+					return <div style={{opacity:this.state.opacity}}>
+							i love u,
+							<p >{this.props.bf}</p>
+							</div>;
+				}
+			});
+			ReactDOM.render(
+				<Comp bf="ѾѾ"/>,
+				document.getElementById('abc')
+			);
+		</script>
+	</body>
+</html>

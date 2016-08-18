@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		    <script src="../build/react.js"></script>
+			<script src="../build/react-dom.js"></script>
+			<script src="../build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="empl" >error</div>
+		<div id="empl2" >error</div>
+		<script type="text/babel">
+			var Aabc = React.createClass({
+				render: function() {
+				  return (
+					<ol>
+					  {
+						React.Children.map(this.props.children, function (child) {
+						  return <li>{child}</li>;
+						})
+					  }
+					</ol>
+				  );
+				}
+			});
+			//Nodlist 不要使用关键字，例如ollist,name;
+			//不要使用小写字母开头，如abc
+			var Aabc = React.createClass({
+				render:function(){
+					return (
+						<ol>
+							{
+							React.Children.map(this.props.children, function (child) {
+								return <li>{child}</li>;
+								})
+							}
+						</ol>
+						);
+				}
+			})
+			
+			ReactDOM.render(
+				<Aabc>
+					<p>first</p>
+					<p>second</p>
+					<span>third</span>
+					<div>forth</div>
+				</Aabc>,
+				document.getElementById('empl')
+			);
+			
+			ReactDOM.render(
+				<Aabc>
+					<span>aaa</span>
+					<span>bbb</span>
+				</Aabc>,
+				document.getElementById("empl2")
+			);
+		</script>
+	</body>
+</html>
